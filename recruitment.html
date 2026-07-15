@@ -1265,6 +1265,43 @@ h1.hero-h1       { animation: fadeUp 0.75s 0.22s ease both; }
   [style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important;}
 }
 
+/* ══ SALARY BENCHMARK TOOL ═══════════════════════ */
+.sbt-grid { display:grid; grid-template-columns:1.15fr 0.85fr; }
+.sbt-form { padding:48px; }
+.sbt-fields { display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:20px; margin-bottom:28px; }
+.sbt-field { display:flex; flex-direction:column; }
+.sbt-label { font-size:10.5px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--navy-mid); margin-bottom:9px; }
+.sbt-select {
+  font-family:var(--sans); font-size:14px; color:var(--text); background:var(--white);
+  border:1.5px solid var(--border-mid); border-radius:8px; padding:13px 14px; cursor:pointer;
+  transition:border-color 0.2s;
+}
+.sbt-select:hover, .sbt-select:focus { border-color:var(--navy-mid); outline:none; }
+.sbt-result { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:28px 30px; }
+.sbt-result-label { font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--navy-mid); display:block; margin-bottom:10px; }
+.sbt-result-figure { font-family:var(--serif); font-size:34px; color:var(--navy-deep); line-height:1.1; margin-bottom:10px; }
+.sbt-result-sub { font-size:13.5px; color:var(--text-mid); margin-bottom:14px; }
+.sbt-result-note { font-size:12.5px; line-height:1.6; color:var(--text-dim); border-top:1px solid var(--border); padding-top:14px; }
+.sbt-disclaimer { font-size:12px; line-height:1.7; color:var(--text-dim); margin-top:22px; max-width:720px; }
+.sbt-image { position:relative; min-height:380px; }
+.sbt-image img { width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ══ IMAGE BANDS ══════════════════════════════════ */
+.img-band { position:relative; height:420px; overflow:hidden; }
+.img-band img { width:100%; height:100%; object-fit:cover; display:block; }
+
+@media (max-width:1024px) {
+  .sbt-grid { grid-template-columns:1fr; }
+  .sbt-image { min-height:240px; order:-1; }
+  .sbt-fields { grid-template-columns:1fr 1fr; }
+  .img-band { height:300px; }
+}
+@media (max-width:640px) {
+  .sbt-form { padding:32px 24px; }
+  .sbt-fields { grid-template-columns:1fr; }
+  .img-band { height:220px; }
+}
+
 </style>
 </head>
 <body>
@@ -1296,6 +1333,93 @@ h1.hero-h1       { animation: fadeUp 0.75s 0.22s ease both; }
     <div class="page-tag">Recruitment</div>
     <h1>The right hire moves your business forward.<br>The wrong one <em>sets it back.</em></h1>
     <p class="page-hero-sub">We don't recruit for everything. We recruit for the functions that directly drive business performance: finance, sales, marketing, business development, and back-office operations. Specialist focus. Stronger hires.</p>
+  </div>
+</section>
+
+<section class="salary-benchmark-section" style="background:var(--white);padding:96px 0;border-bottom:1px solid var(--border);">
+  <div style="max-width:1340px;margin:0 auto;padding:0 64px;">
+    <div style="display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start;margin-bottom:48px;">
+      <p class="section-tag reveal" style="padding-top:6px;">Salary Benchmark Tool</p>
+      <div class="reveal reveal-delay-1">
+        <h2 class="section-title" style="margin-bottom:20px;">What should you budget for<br><em>your next finance hire?</em></h2>
+        <p style="font-size:16px;line-height:1.88;color:var(--text-mid);max-width:640px;">Select a role, industry and location to get an instant, indicative monthly salary range for the Tanzanian market, drawn from 2026 hiring data across regulatory sources, industry surveys and live job postings.</p>
+      </div>
+    </div>
+
+    <div class="sbt-grid reveal reveal-delay-2" style="border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--off-white);">
+      <div class="sbt-form">
+        <div class="sbt-fields">
+          <div class="sbt-field">
+            <label class="sbt-label" for="sbt-role">Role / Position</label>
+            <select id="sbt-role" class="sbt-select" onchange="computeBenchmark()">
+              <optgroup label="Accounts &amp; Bookkeeping">
+                <option value="acc_asst_02" data-min="190" data-max="340">Accounts Assistant / Bookkeeper — 0–2 yrs</option>
+                <option value="acc_asst_34" data-min="340" data-max="500">Accounts Assistant / Bookkeeper — 3–4 yrs</option>
+                <option value="jr_acc_02" data-min="300" data-max="450">Junior Accountant — 0–2 yrs</option>
+                <option value="jr_acc_34" data-min="450" data-max="650">Junior Accountant — 3–4 yrs</option>
+              </optgroup>
+              <optgroup label="Accountants &amp; Finance Executives">
+                <option value="sr_acc_34" data-min="650" data-max="950">Senior Accountant — 3–4 yrs</option>
+                <option value="sr_acc_510" data-min="950" data-max="1700" selected>Senior Accountant — 5–10 yrs</option>
+                <option value="fin_exec_02" data-min="450" data-max="700">Finance Executive — 0–2 yrs</option>
+                <option value="fin_exec_34" data-min="700" data-max="1100">Finance Executive — 3–4 yrs</option>
+                <option value="mgmt_acc_34" data-min="700" data-max="1200">Management Accountant — 3–4 yrs</option>
+                <option value="mgmt_acc_510" data-min="1200" data-max="2300">Management Accountant — 5–10 yrs</option>
+                <option value="tax_acc_34" data-min="650" data-max="1100">Tax Accountant — 3–4 yrs</option>
+                <option value="credit_34" data-min="600" data-max="900">Credit Controller — 3–4 yrs</option>
+                <option value="ia_jr" data-min="350" data-max="600">Internal Auditor (Junior) — 0–2 yrs</option>
+                <option value="ia_sr" data-min="1100" data-max="2300">Internal Auditor (Senior) — 5–10 yrs</option>
+              </optgroup>
+              <optgroup label="Management &amp; Leadership">
+                <option value="chief_acc_510" data-min="1500" data-max="2700">Chief Accountant / Accounts Manager — 5–10 yrs</option>
+                <option value="chief_acc_10" data-min="2700" data-max="4000">Chief Accountant / Accounts Manager — 10+ yrs</option>
+                <option value="tax_mgr_510" data-min="1500" data-max="3000">Tax Manager — 5–10 yrs</option>
+                <option value="treasury_510" data-min="1900" data-max="3400">Treasury Manager — 5–10 yrs</option>
+                <option value="fin_mgr_510" data-min="1900" data-max="3400">Finance Manager — 5–10 yrs</option>
+                <option value="fin_mgr_10" data-min="3400" data-max="5300">Finance Manager — 10+ yrs</option>
+                <option value="fc_510" data-min="2700" data-max="4600">Financial Controller — 5–10 yrs</option>
+                <option value="fc_10" data-min="4600" data-max="7000">Financial Controller — 10+ yrs</option>
+                <option value="cfo_510" data-min="4600" data-max="8000">Head of Finance / CFO — 5–10 yrs</option>
+                <option value="cfo_10" data-min="8000" data-max="17000">Head of Finance / CFO — 10+ yrs</option>
+              </optgroup>
+              <optgroup label="Expatriate Placement">
+                <option value="expat_ca" data-min="1500" data-max="3000" data-net="true">Expatriate Indian CA (CFO / Senior Finance) — 5+ yrs</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="sbt-field">
+            <label class="sbt-label" for="sbt-industry">Industry</label>
+            <select id="sbt-industry" class="sbt-select" onchange="computeBenchmark()">
+              <option value="1.0" selected>General / Other Industries</option>
+              <option value="1.0">Manufacturing</option>
+              <option value="1.325">Banking &amp; Financial Services</option>
+              <option value="1.425">Mining &amp; Extractives</option>
+              <option value="1.15">NGO / INGO</option>
+              <option value="1.15">Construction &amp; Real Estate</option>
+              <option value="0.95">Retail &amp; FMCG</option>
+              <option value="0.925">Hospitality &amp; Tourism</option>
+            </select>
+          </div>
+          <div class="sbt-field">
+            <label class="sbt-label" for="sbt-region">Location</label>
+            <select id="sbt-region" class="sbt-select" onchange="computeBenchmark()">
+              <option value="1.0" selected>Dar es Salaam</option>
+              <option value="0.85">Arusha &amp; Other Regions</option>
+            </select>
+          </div>
+        </div>
+        <div class="sbt-result" id="sbt-result">
+          <span class="sbt-result-label">Estimated Monthly Salary</span>
+          <div class="sbt-result-figure" id="sbt-figure">—</div>
+          <div class="sbt-result-sub" id="sbt-sub">—</div>
+          <div class="sbt-result-note" id="sbt-note">—</div>
+        </div>
+        <p class="sbt-disclaimer">Indicative estimate based on 2026 Tanzania market data (NBAA, TRA, KPMG Tanzania, live job postings). Actual offers vary by candidate qualifications, NBAA registration status and negotiation.</p>
+      </div>
+      <div class="sbt-image">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=80" alt="Finance professionals reviewing a hiring plan">
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1363,8 +1487,8 @@ h1.hero-h1       { animation: fadeUp 0.75s 0.22s ease both; }
         <div style="display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:start;">
           <div>
             <div style="font-size:32px;margin-bottom:12px;">⚙️</div>
-            <h3 style="font-family:var(--serif);font-size:26px;color:var(--navy-deep);margin-bottom:8px;">Back-Office &amp; Administration</h3>
-            <p style="font-size:14px;line-height:1.72;color:var(--text-mid);">The roles that keep operations running. Often undervalued in hiring, almost always critical to execution.</p>
+            <h3 style="font-family:var(--serif);font-size:26px;color:var(--navy-deep);margin-bottom:8px;">HR, Back Office &amp; Administration</h3>
+            <p style="font-size:14px;line-height:1.72;color:var(--text-mid);">The people and processes that keep a business running day to day, from HR support to office administration. Often overlooked in hiring, always critical to execution.</p>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;padding-top:8px;">
             <span class="role-tag">Administrative Assistants</span><span class="role-tag">Office Managers</span><span class="role-tag">Executive Assistants</span><span class="role-tag">Operations Coordinators</span><span class="role-tag">HR Assistants</span><span class="role-tag">Procurement &amp; Logistics Coordinators</span><span class="role-tag">Back-Office Executives</span>
@@ -1391,6 +1515,10 @@ h1.hero-h1       { animation: fadeUp 0.75s 0.22s ease both; }
       <span class="industry-tag">Trading &amp; Distribution</span>
     </div>
   </div>
+</section>
+
+<section class="img-band">
+  <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80" alt="Recruitment specialists collaborating on a candidate shortlist">
 </section>
 
 <section class="why-band">
@@ -1455,6 +1583,10 @@ h1.hero-h1       { animation: fadeUp 0.75s 0.22s ease both; }
       </div>
     </div>
   </div>
+</section>
+
+<section class="img-band">
+  <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1600&q=80" alt="Handshake confirming a successful placement">
 </section>
 
 <section class="contact-band">
@@ -1522,6 +1654,27 @@ const hamburger=document.getElementById('hamburger');
 const mobileMenu=document.getElementById('mobile-menu');
 if(hamburger){hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');mobileMenu.classList.toggle('open');document.body.style.overflow=mobileMenu.classList.contains('open')?'hidden':'';});}
 function closeMobileMenu(){if(hamburger){hamburger.classList.remove('open');mobileMenu.classList.remove('open');document.body.style.overflow='';}}
+
+function computeBenchmark(){
+  const roleSel=document.getElementById('sbt-role');
+  const opt=roleSel.options[roleSel.selectedIndex];
+  const min=parseFloat(opt.dataset.min);
+  const max=parseFloat(opt.dataset.max);
+  const isNet=opt.dataset.net==='true';
+  const industryMult=parseFloat(document.getElementById('sbt-industry').value);
+  const regionMult=parseFloat(document.getElementById('sbt-region').value);
+  let lo=Math.round((min*industryMult*regionMult)/10)*10;
+  let hi=Math.round((max*industryMult*regionMult)/10)*10;
+  const fmtUsd=n=>'$'+n.toLocaleString('en-US');
+  document.getElementById('sbt-figure').textContent=fmtUsd(lo)+' – '+fmtUsd(hi);
+  const tzsRate=2630;
+  const tzsLo=Math.round((lo*tzsRate)/1000)*1000;
+  const tzsHi=Math.round((hi*tzsRate)/1000)*1000;
+  const fmtTzs=n=>'TZS '+n.toLocaleString('en-US');
+  document.getElementById('sbt-sub').textContent='≈ '+fmtTzs(tzsLo)+' – '+fmtTzs(tzsHi)+' · '+(isNet?'Net, per month':'Gross, per month');
+  document.getElementById('sbt-note').textContent=isNet?'Typically paired with additional housing, medical and flight benefits on top of net salary.':'Add 25–45% for total employer cost, including statutory contributions, gratuity and allowances.';
+}
+computeBenchmark();
 </script>
 </body>
 </html>
